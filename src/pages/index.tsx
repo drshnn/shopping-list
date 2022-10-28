@@ -6,6 +6,7 @@ import { useState } from "react";
 import ShoppingBagIcon from "../../public/ShoppingBagIcon";
 import AddItemModal from "../components/AddItemModal";
 import { trpc } from "../utils/trpc";
+import { HiX } from "react-icons/hi";
 
 const Home: NextPage = () => {
   const [isAddActive, setIsAddActive] = useState<Boolean>(false);
@@ -43,12 +44,18 @@ const Home: NextPage = () => {
           </button>
         </nav>
         <main className="mt-20  flex gap-5 px-10 py-5">
-          <div className="flex-5 flex-grow">
-            <ul className="">
-              <p className="text-xl font-semibold">All Items</p>
+          <div className="flex-5 flex-grow ">
+            <p className="mb-3 text-xl font-semibold">All Items</p>
+            <ul className="flex flex-col gap-3">
               {items.map((item) => (
-                <li className="mb-2" key={item.id}>
-                  {item.name}
+                <li
+                  className="flex items-center justify-between border-2 border-black p-5"
+                  key={item.id}
+                >
+                  <span className="">{item.name}</span>
+                  <button className="flex h-8 w-8 items-center justify-center text-xl hover:bg-black hover:text-white">
+                    <HiX />
+                  </button>
                 </li>
               ))}
             </ul>
