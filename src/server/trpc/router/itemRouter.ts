@@ -54,6 +54,7 @@ export const itemRouter = router({
           checked,
         },
       });
-      return item;
+      const items = await ctx.prisma.shoppingItem.findMany();
+      return items;
     }),
 });
