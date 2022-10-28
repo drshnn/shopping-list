@@ -20,7 +20,9 @@ const AddItemModal: FC<AddItemModalProps> = ({ setItems }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addItem({ name: itemName });
+          if (itemName.trim() !== "") {
+            addItem({ name: itemName.trim() });
+          }
         }}
         className="flex flex-col gap-2"
       >
