@@ -22,4 +22,19 @@ export const itemRouter = router({
     const items = await ctx.prisma.shoppingItem.findMany();
     return items;
   }),
+  deleteItem: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { id } = input;
+      const item = await ctx.prisma.shoppingItem.delete({
+        where: {
+          id,
+        },
+      });
+      return item;
+    }),
 });
