@@ -7,6 +7,8 @@ import ShoppingBagIcon from "../../public/ShoppingBagIcon";
 import AddItemModal from "../components/AddItemModal";
 import { trpc } from "../utils/trpc";
 import { HiX } from "react-icons/hi";
+import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
+import { itemRouter } from "../server/trpc/router/itemRouter";
 
 const Home: NextPage = () => {
   const [isAddActive, setIsAddActive] = useState<boolean>(false);
@@ -23,6 +25,12 @@ const Home: NextPage = () => {
   const { mutate: deleteItem } = trpc.item.deleteItem.useMutation({
     onSuccess: (shoppingItem) => {
       setItems((prev) => prev.filter((item) => item.id !== shoppingItem.id));
+    },
+  });
+
+  const { mutate: checkItem } = trpc.item.checkItem.useMutation({
+    onSuccess: (shoppingItem) => {
+      setItems(shoppingItem);
     },
   });
 
@@ -55,10 +63,29 @@ const Home: NextPage = () => {
             <ul className="flex flex-col gap-3">
               {items.map((item) => (
                 <li
-                  className="flex items-center justify-between border-2 border-black p-5"
+                  className="flex items-center gap-5 border-2 border-black p-5"
                   key={item.id}
                 >
-                  <span className="">{item.name}</span>
+                  <div
+                    className=""
+                    onClick={() =>
+                      checkItem({ id: item.id, checked: !item.checked })
+                    }
+                  >
+                    {item.checked ? (
+                      <ImCheckboxChecked />
+                    ) : (
+                      <ImCheckboxUnchecked />
+                    )}
+                  </div>
+
+                  <span
+                    className={`flex-1 ${
+                      item.checked && "line-through"
+                    } text-xl`}
+                  >
+                    {item.name}
+                  </span>
                   <button
                     className="flex h-8 w-8 items-center justify-center text-xl hover:bg-black hover:text-white"
                     onClick={() => deleteItem({ id: item.id })}
