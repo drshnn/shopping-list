@@ -9,7 +9,7 @@ import { trpc } from "../utils/trpc";
 import { HiX } from "react-icons/hi";
 
 const Home: NextPage = () => {
-  const [isAddActive, setIsAddActive] = useState<Boolean>(false);
+  const [isAddActive, setIsAddActive] = useState<boolean>(false);
   const [items, setItems] = useState<ShoppingItem[]>([]);
   const { data: itemsData, isLoading } = trpc.item.getItem.useQuery(
     {},
