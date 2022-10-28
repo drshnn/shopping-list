@@ -20,6 +20,12 @@ const Home: NextPage = () => {
     }
   );
 
+  const { mutate: deleteItem } = trpc.item.deleteItem.useMutation({
+    onSuccess: (shoppingItem) => {
+      setItems((prev) => prev.filter((item) => item.id !== shoppingItem.id));
+    },
+  });
+
   if (!itemsData || isLoading) return <p>Loading...</p>;
   return (
     <>
@@ -53,7 +59,10 @@ const Home: NextPage = () => {
                   key={item.id}
                 >
                   <span className="">{item.name}</span>
-                  <button className="flex h-8 w-8 items-center justify-center text-xl hover:bg-black hover:text-white">
+                  <button
+                    className="flex h-8 w-8 items-center justify-center text-xl hover:bg-black hover:text-white"
+                    onClick={() => deleteItem({ id: item.id })}
+                  >
                     <HiX />
                   </button>
                 </li>
