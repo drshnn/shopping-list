@@ -42,12 +42,9 @@ const AddItemModal: FC<AddItemModalProps> = ({ setItems }) => {
         </div>
 
         {loading ? (
-          <button
-            type="submit"
-            className="flex h-10 items-center justify-center border-2 border-black bg-black font-bold  text-white transition duration-150 ease-in-out"
-          >
+          <button className="flex h-10 items-center justify-center border-2 border-black bg-black font-bold  text-white transition duration-150 ease-in-out">
             <svg
-              className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
+              className="h-5 w-5 animate-spin text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
