@@ -57,8 +57,8 @@ const Home: NextPage = () => {
             {isAddActive ? "Close" : "Add"}
           </button>
         </nav>
-        <main className="mt-20  flex gap-5 px-10 py-5">
-          <div className="flex-5 flex-grow ">
+        <main className="mt-20 flex flex-col gap-5 px-10  py-5 sm:flex-row">
+          <div className="flex-5 order-2 flex-grow sm:order-1">
             <p className="mb-3 text-xl font-semibold">All Items</p>
             <ul className="flex flex-col gap-3">
               {items.map((item) => (
@@ -96,7 +96,7 @@ const Home: NextPage = () => {
               ))}
             </ul>
           </div>
-          <div className="flex-2">
+          <div className="flex-2 order-1 sm:order-2">
             {isAddActive && <AddItemModal setItems={setItems} />}
           </div>
         </main>
