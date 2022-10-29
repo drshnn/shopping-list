@@ -57,4 +57,10 @@ export const itemRouter = router({
       const items = await ctx.prisma.shoppingItem.findMany();
       return items;
     }),
+  deleteAllItems: publicProcedure
+    .input(z.object({}))
+    .mutation(async ({ ctx }) => {
+      const items = await ctx.prisma.shoppingItem.deleteMany();
+      return items;
+    }),
 });
