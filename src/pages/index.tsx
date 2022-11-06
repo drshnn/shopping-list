@@ -127,10 +127,10 @@ const Home: NextPage = () => {
                   </div>
 
                   <span
-                    className={`flex-1 ${
-                      item.checked && "line-through"
-                    } text-xl`}
+                    className={`flex-1 ${item.checked && "line-through"
+                      } text-xl w-44 break-words `}
                   >
+
                     {item.name}
                   </span>
                   <button
